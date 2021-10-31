@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c103b123b1141914c8da5d5aa1db6e88
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - dialogo: {fileID: 11400000, guid: 50985549fae240b47bd106939b41ea60, type: 2}
+  - mainContainer: {instanceID: 0}
+  - imageCharacter: {instanceID: 0}
+  - textMesh: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

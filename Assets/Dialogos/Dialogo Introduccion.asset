@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 693fc6ba3a6cc8548ba8db568498641b, type: 3}
+  m_Name: Dialogo Introduccion
+  m_EditorClassIdentifier: 
+  mensaje:
+  - personaje: {fileID: 11400000, guid: 8fb5db48b23f66a4496049a65e09169c, type: 2}
+    dialogo: Soy un <i>genio</i> <color=yellow>millonario</color>, filatropo y playboy!
+  - personaje: {fileID: 11400000, guid: 890b737fbd3c44349939c3900f4f30ea, type: 2}
+    dialogo: Clarooo Sr. Stark, usted lo es todo!
+  - personaje: {fileID: 11400000, guid: 80c0adc2f63975547a94c376059efe1e, type: 2}
+    dialogo: Tan solo eres un presumido, arrogante!
+  - personaje: {fileID: 11400000, guid: 8fb5db48b23f66a4496049a65e09169c, type: 2}
+    dialogo: Si soy!
+  - personaje: {fileID: 11400000, guid: 80c0adc2f63975547a94c376059efe1e, type: 2}
+    dialogo: Los burritos son alimento!!
+  - personaje: {fileID: 11400000, guid: 890b737fbd3c44349939c3900f4f30ea, type: 2}
+    dialogo: No es cierto mi cielo :D
