@@ -10,24 +10,37 @@ public class DamageZombi : MonoBehaviour
     public  HealthBar healthBar;
     [SerializeField]
     public TextMeshProUGUI SCORE;
-   
+
     int vida = 100;
     int score = 0;
-    int zobmbies =0 ;
+    int zombies = 0;
+    float distance;
+    Transform player;
 
 
     // Start is called before the first frame update
+    private void Awake()
+    {
+        player = GameObject.Find("Personaje").transform;
+    }
 
     void Start()
     {
-        score =  PlayerPrefs.GetInt("Score");
+        score = PlayerPrefs.GetInt("Score");
         healthBar.SetMaxHealth();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        zombies = PlayerPrefs.GetInt("zombies");
+        distance = Vector3.Distance(player.position, transform.position);
+        if (distance > 70)
+        {
+            DecrementaZombi();
+            Destroy(gameObject);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -35,9 +48,8 @@ public class DamageZombi : MonoBehaviour
         string tag = collision.gameObject.tag;
         if (tag.Equals("Municion"))
         {
-           
+
             vida -= (int)Random.Range(20f, 50f);
-            Debug.Log(vida.ToString());
             healthBar.SetHealth(vida);
             if (vida <= 0)
 
@@ -45,16 +57,22 @@ public class DamageZombi : MonoBehaviour
                 score = PlayerPrefs.GetInt("Score");
                 score += 100;
                 PlayerPrefs.SetInt("Score", score);
-                zobmbies = PlayerPrefs.GetInt("Zombies");
-                zobmbies -= 1;
-                PlayerPrefs.SetInt("Zombies", zobmbies);
-
+                DecrementaZombi();
                 Destroy(gameObject);
-            }
 
             }
+
         }
     }
 
-    
+    private void DecrementaZombi()
+    {
+        zombies = PlayerPrefs.GetInt("zombies");
+        zombies--;
+        PlayerPrefs.SetInt("zombies", zombies);
+    }
+
+}
+
+
 

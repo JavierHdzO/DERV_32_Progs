@@ -24,6 +24,7 @@ public class stopMoveTowards : MonoBehaviour
         if (other.name.Equals("Mario"))
         {
             isTheEnd = true;
+
         }
     }
 

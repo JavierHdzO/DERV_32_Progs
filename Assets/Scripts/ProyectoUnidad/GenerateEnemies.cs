@@ -12,26 +12,32 @@ public class GenerateEnemies : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        enemyCount = 0;
+        PlayerPrefs.SetInt("zombies", 0);
         StartCoroutine(EnemyDrop());
-        PlayerPrefs.SetInt("Zombies",enemyCount);
     }
+
+    public void FixedUpdate()
+    {
+        enemyCount = PlayerPrefs.GetInt("zombies");
+    }
+
+
 
     IEnumerator EnemyDrop()
     {
-        while (true)
+        while (enemyCount <= 4)
         {
-            if (enemyCount < 10)
-            {
-                xPos = (int)Random.Range(transform.position.x + 10, transform.position.x + 20);
-                zPos = (int)Random.Range(transform.position.z + 10, transform.position.z + 25);
-                Instantiate(theEnemy, new Vector3(xPos, 40, zPos), theEnemy.transform.rotation);
-                enemyCount += 1;
-                enemyCount = PlayerPrefs.GetInt("Zombies");
-                enemyCount += 1;
-                PlayerPrefs.SetInt("Zombies",enemyCount);
-                yield return new WaitForSeconds(10f);
-            }
-            
+
+
+            xPos = (int)Random.Range(transform.position.x + 10, transform.position.x + 15);
+            zPos = (int)Random.Range(transform.position.z + 10, transform.position.z + 15);
+            Instantiate(theEnemy, new Vector3(xPos, 40, zPos), theEnemy.transform.rotation);
+            enemyCount = PlayerPrefs.GetInt("zombies");
+            enemyCount++;
+            PlayerPrefs.SetInt("zombies", enemyCount);
+            yield return new WaitForSeconds(10f);
+
         }
     }
 }

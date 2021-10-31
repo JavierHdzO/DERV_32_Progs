@@ -24,13 +24,13 @@ public class ZombieSeguimiento : MonoBehaviour
     {
         FollowPlayer = GameObject.Find("Personaje");
         TargetLookAt = FollowPlayer.transform;
-        
+
     }
     // Start is called before the first frame update
     void Start()
     {
         animation = GetComponent<Animation>();
-        
+
     }
 
     // Update is called once per frame
@@ -52,18 +52,18 @@ public class ZombieSeguimiento : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        
-        if(other.tag == "Player")
+
+        if (other.tag == "Player")
         {
 
             if (animation.IsPlaying("Idle") || animation.IsPlaying("Attack1"))
             {
                 animation.Stop("Idle");
-    
+
                 animation.PlayQueued("Walk");
                 animation.PlayQueued("Idle");
             }
-            
+
 
             Vector3 origen = transform.position;
             Vector3 destino = FollowPlayer.transform.position;
@@ -76,7 +76,7 @@ public class ZombieSeguimiento : MonoBehaviour
             float distancia = Vector3.Distance(origen, destino);
 
             stateStay = true;
-        }     
+        }
 
     }
 
@@ -97,12 +97,13 @@ public class ZombieSeguimiento : MonoBehaviour
 
     public void ColisionPersonaje()
     {
-        
-        RaycastHit hit;
-        
-        if(Physics.Raycast(transform.position, transform.forward, out hit, 4, LayerMask.GetMask("Interactable"))){
 
-            if(hit.transform.tag == "Player")
+        RaycastHit hit;
+
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 4, LayerMask.GetMask("Interactable")))
+        {
+
+            if (hit.transform.tag == "Player")
             {
 
                 SistemaMarcador SM = hit.transform.GetComponent<SistemaMarcador>();
@@ -112,7 +113,7 @@ public class ZombieSeguimiento : MonoBehaviour
                 BorrarMensaje = false;
 
             }
-            
+
         }
         else
         {
@@ -122,6 +123,7 @@ public class ZombieSeguimiento : MonoBehaviour
 
 
     }
+
 
 
 }

@@ -8,24 +8,46 @@ public class GenerateHealth : MonoBehaviour
     private int xPos;
     private int zPos;
     private int yPos;
-    public int enemyCount = 0;
-
+    public int healths = 0;
+    GameObject Botiquin;
+    float distance;
     // Start is called before the first frame update
     void Start()
     {
+        healths = 0;
+        PlayerPrefs.SetInt("health", 0);
         StartCoroutine(EnemyDrop());
+    }
+
+    private void FixedUpdate()
+    {
+        healths = PlayerPrefs.GetInt("health");
+        if (Botiquin != null)
+        {   
+            distance = Vector3.Distance(gameObject.transform.position, Botiquin.transform.position);
+            Debug.Log(distance.ToString());
+            if (distance > 50)
+            {
+                healths--;
+                PlayerPrefs.SetInt("health", healths);
+                Destroy(Botiquin);
+            }
+        }
     }
 
     IEnumerator EnemyDrop()
     {
-        while (enemyCount < 1)
+        while (healths < 3)
         {
-            xPos = (int)Random.Range(transform.position.x + 35, transform.position.x + 100);
-            zPos = (int)Random.Range(transform.position.z + 35, transform.position.z + 120);
-            yPos = (int)Random.Range(transform.position.y +10, transform.position.z + 12);
-            Instantiate(Health, new Vector3(xPos, yPos, zPos), Health.transform.rotation);
-            enemyCount += 1;
-            yield return new WaitForSeconds(10f);
+            xPos = (int)Random.Range(transform.position.x + 15, transform.position.x + 50);
+            zPos = (int)Random.Range(transform.position.z + 15, transform.position.z + 50);
+            yPos = (int) transform.position.y + 30;
+            Botiquin = Instantiate(Health, new Vector3(xPos, yPos, zPos), Health.transform.rotation);
+            healths = PlayerPrefs.GetInt("health");
+            healths++;
+            PlayerPrefs.SetInt("health", healths);
+            Debug.Log("Botiquines "+ healths);
+            yield return new WaitForSeconds(45f);
             
         }
     }

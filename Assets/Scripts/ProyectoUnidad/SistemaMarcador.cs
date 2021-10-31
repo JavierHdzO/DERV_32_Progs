@@ -26,7 +26,9 @@ public class SistemaMarcador : MonoBehaviour
 
     private Animation animationZom;
     private bool stayColl;
+    int healths;
     // Start is called before the first frame update
+
 
     private void Awake()
     {
@@ -41,6 +43,8 @@ public class SistemaMarcador : MonoBehaviour
 
         stayColl = false;
         StartCoroutine("DownHealth");
+
+        PlayerPrefs.SetString("result", "");
 
     }
 
@@ -58,7 +62,7 @@ public class SistemaMarcador : MonoBehaviour
         }
 
         Marcadores();
-        
+
     }
 
     public void Marcadores()
@@ -68,7 +72,7 @@ public class SistemaMarcador : MonoBehaviour
         {
             int score = int.Parse(TXTPuntuaje.text);
             PlayerPrefs.SetInt("Score", score);
-
+            PlayerPrefs.SetString("result", "You are dead");
             SceneManager.LoadScene(2);
 
         }
@@ -78,16 +82,20 @@ public class SistemaMarcador : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
 
-        
+
 
         if (collision.gameObject.tag.Equals("Health"))
         {
             if (vida < 100)
             {
-                vida += (vida + 20) > 100 ? 100 : 20;
+                int temp = (vida + 20) >= 100 ? (100-vida) : 20;
+                vida += temp;
+                healths = PlayerPrefs.GetInt("health");
+                healths--;
+                PlayerPrefs.SetInt("health", healths);
                 Destroy(collision.gameObject);
             }
-                
+
         }
 
     }
@@ -95,14 +103,18 @@ public class SistemaMarcador : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.tag.Equals("Zombie"))
+        GameObject temp = collision.gameObject;
+        if (temp.tag.Equals("Zombie"))
         {
-            //animationZom.Play("Run");
-            animationZom.PlayQueued("Walk");
-            animationZom.PlayQueued("Idle");
-            stayColl = false;
+            if (temp != null)
+            {
+                //animationZom.Play("Run");
+                animationZom.PlayQueued("Walk");
+                animationZom.PlayQueued("Idle");
+                stayColl = false;
+            }
         }
-        
+
     }
 
 
@@ -111,14 +123,14 @@ public class SistemaMarcador : MonoBehaviour
         if (collision.gameObject.tag.Equals("Zombie"))
         {
             animationZom = collision.gameObject.GetComponent<Animation>();
-            
+
             stayColl = true;
 
         }
     }
 
 
-    IEnumerator DownHealth() 
+    IEnumerator DownHealth()
     {
         while (true)
         {
@@ -132,8 +144,8 @@ public class SistemaMarcador : MonoBehaviour
                         animationZom["Attack1"].speed = 2;
                         vida -= Random.Range(20, 35);
                     }
-                    
-                    
+
+
                 }
                 else
                 {
@@ -145,7 +157,7 @@ public class SistemaMarcador : MonoBehaviour
                 }
 
             }
-            else 
+            else
             {
                 vida = 0;
                 break;

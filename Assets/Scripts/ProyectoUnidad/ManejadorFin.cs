@@ -13,6 +13,9 @@ public class ManejadorFin : MonoBehaviour
     [SerializeField]
     public TextMeshProUGUI TXTPuntuaje;
 
+    [SerializeField]
+    public TextMeshProUGUI txtResultado;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,17 +26,21 @@ public class ManejadorFin : MonoBehaviour
         int score = PlayerPrefs.GetInt("Score");
         TXTPuntuaje.text = score.ToString();
 
+        string resultado = PlayerPrefs.GetString("result");
+        txtResultado.text = resultado;
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void JugarNuevamente()
     {
-       
+
         SceneManager.LoadScene(0);
     }
 

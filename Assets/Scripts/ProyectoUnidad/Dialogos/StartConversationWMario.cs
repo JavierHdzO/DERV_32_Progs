@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class StartConversationWMario : MonoBehaviour
@@ -48,7 +49,7 @@ public class StartConversationWMario : MonoBehaviour
             if (indice < dialogo.conversacionMarioLength() - 1) //Solamente active el contenedor de dialogos mientres alla dialogos por mostrar.
             {
                 mainContainer.SetActive(true);
-            } 
+            }
             textMesh.text = dialogo.conversacionMario[indice].nombrePersonaje + ": " + dialogo.conversacionMario[indice].Message;
             imageCharacter.sprite = dialogo.conversacionMario[indice].CharacterImage;
             textMesh.maxVisibleCharacters = 0;
@@ -97,11 +98,13 @@ public class StartConversationWMario : MonoBehaviour
             StartCoroutine("mostrarTexto");
         }
 
-       
+
 
         if (scriptStopMoveTowards.getIfIsTheEnd())
         {
             Mario.transform.position = Vector3.MoveTowards(Mario.transform.position, Mario.transform.position, 20f * Time.deltaTime);
+            PlayerPrefs.SetString("result", "You Won !!!");
+            SceneManager.LoadScene(2);
         }
         else
         {
@@ -150,4 +153,5 @@ public class StartConversationWMario : MonoBehaviour
         mainContainer.SetActive(false);
 
     }
+
 }
