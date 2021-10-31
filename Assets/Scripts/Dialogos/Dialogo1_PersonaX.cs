@@ -6,7 +6,7 @@ using UnityEngine;
 public class Dialogo1_PersonaX : MonoBehaviour
 {
 
-    public string[] dialogo;
+    public string dialogo;
 
     public TextMeshProUGUI texto;
 

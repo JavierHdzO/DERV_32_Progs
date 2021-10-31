@@ -7,7 +7,6 @@ public class impactoBala : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField]
     GameObject effectObject;
-
     ParticleSystem effect;
    
     void Start()

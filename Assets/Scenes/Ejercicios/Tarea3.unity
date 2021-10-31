@@ -732,16 +732,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2002820902}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1cfb2e229d27d0342abded142d4b535c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogo:
-  - <b>Hola</b>
-  - "\xBFComo estas?"
-  - Me alegra!! :D
-  - Saludos
+  dialogo: 
   texto: {fileID: 789498940}
 --- !u!4 &2002820904
 Transform:

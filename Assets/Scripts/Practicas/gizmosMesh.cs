@@ -13,6 +13,6 @@ public class gizmosMesh : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = new Color32(145, 125, 45,78);
-        Gizmos.DrawWireMesh(model, transform.position, Quaternion.identity, Vector3.one*170);
+        Gizmos.DrawMesh(model, transform.position, Quaternion.identity, Vector3.one*170);
     }
 }

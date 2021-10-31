@@ -10,6 +10,12 @@ TagManager:
   - zombi
   - Zombie
   - Health
+  - Lampara
+  - Encender
+  - Banco
+  - Dinero
+  - Pista
+  - Personaje
   layers:
   - Default
   - TransparentFX
